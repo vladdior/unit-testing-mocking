@@ -1,6 +1,7 @@
 package com.endava.internship.mocking.service;
 
 import com.endava.internship.mocking.model.Payment;
+import com.endava.internship.mocking.model.Status;
 import com.endava.internship.mocking.model.User;
 import com.endava.internship.mocking.repository.PaymentRepository;
 import com.endava.internship.mocking.repository.UserRepository;
@@ -50,11 +51,9 @@ class PaymentServiceTest {
         Integer userId = 100;
         String userName = "Alex";
         String paymentMessage = "Payment from user " + userName;
-        User userMock = mock(User.class);
+        User userMock = new User(userId, userName, Status.ACTIVE);
 
         when(userRepositoryMock.findById(userId)).thenReturn(Optional.of(userMock));
-        when(userMock.getId()).thenReturn(userId);
-        when(userMock.getName()).thenReturn(userName);
 
         testPaymentService.createPayment(userId, amount);
 
