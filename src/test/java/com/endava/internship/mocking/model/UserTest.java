@@ -1,26 +1,15 @@
 package com.endava.internship.mocking.model;
 
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertAll;
 
 class UserTest {
-
-    User testUser;
-    private Integer id;
-    private Status status;
-    private String name;
-
-    @BeforeEach
-    void setUp() {
-        id = 5;
-        status = Status.ACTIVE;
-        name = "Alex";
-
-        testUser = new User(id, name, status);
-    }
+    private final Integer id = 5;
+    private final Status status = Status.ACTIVE;
+    private final String name = "Alex";
+    private final User testUser = new User(id, name, status);
 
     @Test
     void shouldCreateNewUser() {

@@ -9,19 +9,17 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.*;
 
 class InMemUserRepositoryTest {
-    InMemUserRepository userRepository;
+    InMemUserRepository userRepository = new InMemUserRepository();
 
-    @BeforeEach
-    void setUp() {
-        userRepository = new InMemUserRepository();
+    @Test
+    void shouldFindUserById() {
+        User expectedUser = new User(2, "Maria", Status.ACTIVE);
+        assertThat(userRepository.findById(2)).hasValue(expectedUser);
     }
 
     @Test
-    void shouldFindUserByIdOrReturnEmpty() {
-        User testUser = new User(2, "Maria", Status.ACTIVE);
-
-        assertThat(userRepository.findById(2)).hasValue(testUser);
-        assertThat(userRepository.findById(6)).isEmpty();
+    void shouldReturnEmptyIfUserDoesNotExist() {
+        assertThat(userRepository.findById(-50)).isEmpty();
     }
 
     @Test
